@@ -1,4 +1,4 @@
-from flaskr import create_app
+from start_ml import create_app
 
 
 def test_config():

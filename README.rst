@@ -1,63 +1,27 @@
-Copy from Flaskr
+Start machine learning in python web
 ======
 
-The basic blog app built in the Flask `tutorial`_.
-
-.. _tutorial: http://flask.pocoo.org/docs/tutorial/
 
 
 Install
 -------
 
-**Be sure to use the same version of the code as the version of the docs
-you're reading.** You probably want the latest tagged version, but the
-default Git version is the master branch. ::
+
 
     # clone the repository
-    $ git clone https://github.com/pallets/flask
-    $ cd flask
-    # checkout the correct version
-    $ git tag  # shows the tagged versions
-    $ git checkout latest-tag-found-above
-    $ cd examples/tutorial
+    $ git clone https://github.com/peterzpli/start_ml_py_web.git
 
-Create a virtualenv and activate it::
 
-    $ python3 -m venv venv
-    $ . venv/bin/activate
-
-Or on Windows cmd::
+on Windows cmd::
 
     $ py -3 -m venv venv
     $ venv\Scripts\activate.bat
 
-Install Flaskr::
+add vm param in IDE before run
+FLASK_APP=start_ml
+FLASK_ENV=development
 
-    $ pip install -e .
-
-Or if you are using the master branch, install Flask from source before
-installing Flaskr::
-
-    $ pip install -e ../..
-    $ pip install -e .
-
-
-Run
----
-
-::
-
-    $ export FLASK_APP=flaskr
-    $ export FLASK_ENV=development
-    $ flask init-db
-    $ flask run
-
-Or on Windows cmd::
-
-    > set FLASK_APP=flaskr
-    > set FLASK_ENV=development
-    > flask init-db
-    > flask run
+dev_mode.py is the entry when debug or run in IDE
 
 Open http://127.0.0.1:5000 in a browser.
 
@@ -75,3 +39,16 @@ Run with coverage report::
     $ coverage run -m pytest
     $ coverage report
     $ coverage html  # open htmlcov/index.html in a browser
+
+
+Production
+____
+
+activate phonefilter
+cd ${YOUR_PROJECT}\start_ml_py_web
+python setup.py bdist_wheel
+pip uninstall flaskr
+pip install dist/flaskr-1.0.1-py2.py3-none-any.whl
+set FLASK_APP=start_ml
+flask init-db
+waitress-serve --call start_ml:create_app
